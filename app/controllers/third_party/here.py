@@ -3,18 +3,17 @@ Controller file implementing geocoding requests to the here Geocoder API.
 """
 
 # External imports
-from typing import Any
-
-# Internal imports
 # - N/A
 
+# Internal imports
+from app.models.lat_lng import LatLng
 
-def geocode(address: str) -> Any:
+
+def geocode(address: str) -> LatLng:
     """
     Geocode the given address string to (lat, lng) coordinates, by making a
     manual HTTP request to the here Geocoder API.
 
     TODO: Implement.
-    TODO: Adjust return type.
     """
-    return address
+    return LatLng(lat=0, lng=0)

@@ -3,7 +3,7 @@ Provides the simple LatLng model used throughout the rest of the app.
 """
 
 # External imports
-from typing import Any, Union
+from typing import Any
 
 # Internal imports
 # - N/A
@@ -14,7 +14,7 @@ class LatLng(object):
     Simple model for representing a (latitude, longitude) numeric 2-tuple.
     """
 
-    def __init__(self, lat: float, lng: float):
+    def __init__(self, lat: float, lng: float) -> None:
         self.lat = lat
         self.lng = lng
 

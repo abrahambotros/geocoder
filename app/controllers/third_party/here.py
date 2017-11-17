@@ -3,7 +3,7 @@ Controller file implementing geocoding requests to the here Geocoder API.
 """
 
 # External imports
-from typing import Any
+# - N/A
 
 # Internal imports
 from app.models.lat_lng import LatLng

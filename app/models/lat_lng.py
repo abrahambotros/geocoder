@@ -3,7 +3,7 @@ Provides the simple LatLng model used throughout the rest of the app.
 """
 
 # External imports
-from typing import Any, Union
+from typing import Any
 
 # Internal imports
 # - N/A

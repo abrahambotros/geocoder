@@ -4,7 +4,7 @@ API.
 """
 
 # External imports
-from typing import Any
+# - N/A
 
 # Internal imports
 from app.models.lat_lng import LatLng

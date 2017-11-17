@@ -1,10 +1,9 @@
 """
-Provides the simple LatLng model used throughout the rest of the app. Provides
-some useful utilities for comparing coordinate pairs too.
+Provides the simple LatLng model used throughout the rest of the app.
 """
 
 # External imports
-# - N/A
+from typing import Any, Union
 
 # Internal imports
 # - N/A
@@ -18,3 +17,10 @@ class LatLng(object):
     def __init__(self, lat: float, lng: float):
         self.lat = lat
         self.lng = lng
+
+    def __eq__(self, other: Union[LatLng, Any]) -> bool:
+        """
+        Two LatLng (or one LatLng instance and one LatLng-like object) are
+        considered equal if their lat and lng values are respectively equal.
+        """
+        return self.lat == other.lat and self.lng == other.lng

@@ -5,13 +5,13 @@ third-party geocoding service requests and backup/fallback logic.
 """
 
 # External imports
-# - N/A
+from typing import Any
 
 # Internal imports
 # - N/A
 
 
-def geocode(address: str) -> str:
+def geocode(address: str) -> Any:
     """
     Geocode the given address string to (lat, lng) coordinates.
 

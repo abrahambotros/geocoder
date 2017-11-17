@@ -3,6 +3,7 @@ Tests for the LatLng model.
 """
 
 # External imports
+import json
 import unittest
 
 # Internal imports
@@ -51,3 +52,25 @@ class TestLatLng(unittest.TestCase):
         self.assertFalse(LatLng(lat=lat, lng=lng) ==
                          LatLng(lat=lat * 2, lng=lng * 2),
                          "lat and lng not equal, so instances should be not equal")  # NOQA: E501
+
+    def test_to_dict(self):
+        lat = 1.1
+        lng = 2.2
+        lat_lng = LatLng(lat=lat, lng=lng)
+        d = lat_lng.to_dict()
+        self.assertTrue(len(d.keys()) == 2)
+        self.assertTrue(d[LatLng.API_FIELD_LAT] == lat)
+        self.assertTrue(d[LatLng.API_FIELD_LNG] == lng)
+
+    def test_to_json(self):
+        """
+        TODO: Consider consolidating code with test_to_dict.
+        """
+        lat = 1.1
+        lng = 2.2
+        lat_lng = LatLng(lat=lat, lng=lng)
+        s = lat_lng.to_json()
+        d = json.loads(s)
+        self.assertTrue(len(d.keys()) == 2)
+        self.assertTrue(d[LatLng.API_FIELD_LAT] == lat)
+        self.assertTrue(d[LatLng.API_FIELD_LNG] == lng)

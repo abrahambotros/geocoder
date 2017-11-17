@@ -18,7 +18,7 @@ class LatLng(object):
         self.lat = lat
         self.lng = lng
 
-    def __eq__(self, other: Union[LatLng, Any]) -> bool:
+    def __eq__(self, other: Any) -> bool:
         """
         Two LatLng (or one LatLng instance and one LatLng-like object) are
         considered equal if their lat and lng values are respectively equal.

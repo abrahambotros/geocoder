@@ -24,14 +24,12 @@ def geocode() -> str:
     # TODO: Implement.
 
     # Pass address from request to main geocoding controller to get geocoded
-    # response.
-    data = main_controller.geocode(
+    # LatLng response.
+    lat_lng = main_controller.geocode(
         address="",
     )
 
     # TODO: Handle errors from geocoding functions.
 
-    # TODO: Perform any JSON serialization appropriate for the geocoding data
-    #    before responding to client.
-
-    return jsonify(data)
+    # JSON-ify the LatLng data and respond to client.
+    return jsonify(lat_lng.to_dict())

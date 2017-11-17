@@ -3,7 +3,7 @@ Entry-point for this application.
 """
 
 # External modules
-from flask import Flask
+from flask import Flask, jsonify
 
 # Internal modules
 from app.controllers import main as main_controller
@@ -34,4 +34,4 @@ def geocode() -> str:
     # TODO: Perform any JSON serialization appropriate for the geocoding data
     #    before responding to client.
 
-    return data
+    return jsonify(data)

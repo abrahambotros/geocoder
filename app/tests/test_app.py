@@ -10,6 +10,7 @@ from urllib.parse import urlencode
 # Internal imports
 from app import app
 from app.controllers.tests.utils import ADDRESS_TO_LATLNG_DICT
+from app.models.lat_lng import LatLng
 
 
 class TestApp(unittest.TestCase):
@@ -38,8 +39,10 @@ class TestApp(unittest.TestCase):
             resp_data = json.loads(resp.data)
 
             # Check response.
+            expected_dict = {
+                LatLng.API_FIELD_LAT: lat_lng.lat,
+                LatLng.API_FIELD_LNG: lat_lng.lng,
+            }
             # TODO: Use constant-str keys.
-            self.assertTrue(resp_data == {
-                "lat": lat_lng.lat,
-                "lng": lat_lng.lng,
-            })
+            self.assertTrue(resp_data == expected_dict,
+                            "Response data dict (%s) should match expected simple dict (%s)" % (resp_data, expected_dict))  # NOQA: E501

@@ -31,3 +31,11 @@ the root directory of this project!
 ```
 ./run.sh
 ```
+
+## Tests
+
+To run tests, just simply run the included tests script from the root directory of this project:
+
+```
+./tests.sh
+```

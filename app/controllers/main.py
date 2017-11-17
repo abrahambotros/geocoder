@@ -8,16 +8,14 @@ third-party geocoding service requests and backup/fallback logic.
 from typing import Any
 
 # Internal imports
-# - N/A
+from app.models.lat_lng import LatLng
 
 
-def geocode(address: str) -> Any:
+def geocode(address: str) -> LatLng:
     """
     Geocode the given address string to (lat, lng) coordinates.
 
     TODO: Implement.
     TODO: Document.
-    TODO: Adjust return type.
     """
-    # TODO: Return appropriate data, not just input address.
-    return address
+    return LatLng(lat=0, lng=0)

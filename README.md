@@ -105,8 +105,8 @@ of this project:
 
 ## Type-checking
 
-To run type-checks, run the included script from the root directory of this
-project:
+To run type-checks via (mypy)[http://mypy-lang.org/], run the included script
+from the root directory of this project:
 
 ```
 ./type_check.sh

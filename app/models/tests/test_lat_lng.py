@@ -62,9 +62,6 @@ class TestLatLng(unittest.TestCase):
         self.assertTrue(d[LatLng.API_FIELD_LNG] == lng)
 
     def test_to_json(self):
-        """
-        TODO: Consider consolidating code with test_to_dict.
-        """
         lat = 1.1
         lng = 2.2
         lat_lng = LatLng(lat=lat, lng=lng)

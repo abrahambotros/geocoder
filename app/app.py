@@ -20,11 +20,16 @@ SERVER = Flask(__name__)
 def geocode() -> str:
     """
     Root geocode response handler.
-
-    TODO: Handle errors.
     """
     # Parse address from request.
     address = request.args.get(_URL_PARAM_ADDRESS)
+    # If address is empty string, then return error now.
+    if not address:
+        api_error = api_utils.APIError(
+            status=api_utils.HTTP_STATUS_ERR_BAD_REQUEST,
+            title="Missing/invalid address parameter",
+        )
+        return api_utils.jsonify_error_data([api_error])
 
     # Pass address from request to main geocoding controller to get geocoded
     # LatLng response.

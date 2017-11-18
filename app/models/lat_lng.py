@@ -7,7 +7,10 @@ import json
 from typing import Any, Dict
 
 # Internal imports
-# - N/A
+from app.utils import math as utils_math
+
+# Constants
+EQUALISH_NDIGITS_PRECISION = 5
 
 
 class LatLng(object):
@@ -27,12 +30,18 @@ class LatLng(object):
         self.lat = lat
         self.lng = lng
 
+    def __str__(self):
+        return "LatLng: <lat: %0.5f, lng: %0.5f>" % (self.lat, self.lng)
+
     def __eq__(self, other: Any) -> bool:
         """
         Two LatLng (or one LatLng instance and one LatLng-like object) are
-        considered equal if their lat and lng values are respectively equal.
+        considered equal if their lat and lng values are respectively equal up
+        to some reasonable amount of precision.
         """
-        return self.lat == other.lat and self.lng == other.lng
+        return utils_math.equalish(x=self.lat, y=other.lat, precision_digits=EQUALISH_NDIGITS_PRECISION) and \
+            utils_math.equalish(x=self.lng, y=other.lng,
+                                precision_digits=EQUALISH_NDIGITS_PRECISION)
 
     def to_dict(self) -> Dict[str, float]:
         """

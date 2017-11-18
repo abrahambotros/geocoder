@@ -8,6 +8,7 @@ third-party geocoding service requests and backup/fallback logic.
 # - N/A
 
 # Internal imports
+from app.controllers.third_party import google_maps as gmaps_controller
 from app.models.lat_lng import LatLng
 
 
@@ -15,7 +16,10 @@ def geocode(address: str) -> LatLng:
     """
     Geocode the given address string to (lat, lng) coordinates.
 
-    TODO: Implement.
-    TODO: Document.
+    TODO: Implement fallback.
+    TODO: Document. Note throws exception.
     """
-    return LatLng(lat=0, lng=0)
+    try:
+        return gmaps_controller.geocode(address=address)
+    except Exception:
+        raise RuntimeError("Error geocoding address: %s" % address)

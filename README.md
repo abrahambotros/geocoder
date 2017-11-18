@@ -2,7 +2,7 @@
 
 Simple REST API server for geocoding addresses, implemented in Python.
 
-### Inputs
+#### Inputs
 
 This simple server accepts HTTP `GET` requests to its root route (`/`), with an
 `address` URL parameter indicating the address string that should be geocoded.
@@ -13,7 +13,7 @@ CA, you might make the following request to this server:
 <app URL>/?address=123+Somewhere+St,+San+Francisco,+CA>
 ```
 
-### Geocoding
+#### Geocoding overview
 
 The actual geocoding is done via requests to third-party geocoding APIs. In
 particular, this app first tries querying the
@@ -22,7 +22,7 @@ followed by the [HERE Geocoder API](https://developer.here.com/documentation/geo
 You must provide your access keys to these APIs as described below in a `.env`
 file (we did not include our own keys here to avoid them getting abused!).
 
-### Outputs
+#### Outputs
 
 If the geocoding is successful, this server will write back to the client a
 simple JSON object of the form:

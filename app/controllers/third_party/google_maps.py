@@ -4,15 +4,12 @@ API.
 """
 
 # External imports
-import json
-import ssl
-import urllib.request
-from urllib.parse import urlencode
 from typing import Dict
 
 # Internal imports
 from app.models.lat_lng import LatLng
 from app.conf.settings import GMAPS_API_KEY
+from app.controllers.third_party.request import make_geocode_request
 from app.utils import dictionary as utils_dictionary
 
 # Constants
@@ -33,21 +30,12 @@ def geocode(address: str) -> LatLng:
         _URL_PARAM_API_KEY: GMAPS_API_KEY,
     }
 
-    # URL-encode the URL params dict into a URL-encoded string.
-    params_str: str = urlencode(params_dict)
-
-    # Fire off the request to the Google Maps Geocoding API. Parse response to
-    # JSON dict.
-    url = "%s?%s" % (_URL_GEOCODE_BASE, params_str)
-    # TODO: Python 3's increased SSL security for requests will likely cause a
-    #    CERTIFICATE_VERIFY_FAILED error on most local systems without elaborate
-    #    certificate setup. Because of this, we currently disable SSL
-    #    verification of the CONTROLLED requests we make to the known API
-    #    endpoints via the explicit context setting below.
-    # TODO: Handle errors.
-    context = ssl._create_unverified_context()
-    with urllib.request.urlopen(url=url, context=context) as resp:
-        resp_dict = json.loads(resp.read().decode("utf-8"))
+    # Make geocode request to Google Maps Geocoding API. Get result as JSON
+    # dict.
+    resp_dict = make_geocode_request(
+        base_url=_URL_GEOCODE_BASE,
+        params_dict=params_dict,
+    )
 
     # Parse response data dict's latitude and longitude into LatLng instance and
     # return with success. If error, raise exception.

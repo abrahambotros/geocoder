@@ -13,6 +13,9 @@ CA, you might make the following request to this server:
 <app URL>/?address=123+Somewhere+St,+San+Francisco,+CA>
 ```
 
+Note that when running locally, the app server URL is typically
+`localhost:5000`; see details below.
+
 #### Geocoding overview
 
 The actual geocoding is done via requests to third-party geocoding APIs. In
@@ -87,6 +90,9 @@ included script from the root directory of this project!
 ```
 ./run.sh
 ```
+
+Note that this will inform you of the URL you can use to hit your local server
+instance (typically `localhost:5000`).
 
 ## Tests
 

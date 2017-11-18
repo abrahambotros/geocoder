@@ -45,18 +45,18 @@ def geocode(address: str) -> LatLng:
         raise RuntimeError("Error parsing HERE Geocoder API response")
 
 
-def _parse_geocode_response_dict_to_lat_lng(d: Dict) -> LatLng:
+def _parse_geocode_response_dict_to_lat_lng(resp_dict: Dict) -> LatLng:
     """
     TODO: Document. Raises exception.
     TODO: Implement.
     """
     # If invalid input, raise error.
-    if not d:
+    if not resp_dict:
         raise ValueError("Invalid empty input dict")
 
     # Get Response->View sublist.
     view: Union[List, None] = utils_dictionary.get_nested_value(
-        dictionary=d,
+        dictionary=resp_dict,
         keys=["Response", "View"],
         default=None,
     )

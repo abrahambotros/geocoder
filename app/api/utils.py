@@ -38,11 +38,18 @@ def jsonify_success_data(data: Any) -> str:
 ###################
 
 class APIError(object):
+    """
+    TODO: Document.
+    """
+
     def __init__(self, status: int, title: str) -> None:
         self.status = status
         self.title = title
 
     def to_dict(self) -> Dict:
+        """
+        TODO: Document.
+        """
         return {
             "status": self.status,
             "title": self.title,

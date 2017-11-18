@@ -45,16 +45,16 @@ def geocode(address: str) -> LatLng:
         raise RuntimeError("Error parsing Google Maps Geocoding API response")
 
 
-def _parse_geocode_response_dict_to_lat_lng(d: Dict) -> LatLng:
+def _parse_geocode_response_dict_to_lat_lng(resp_dict: Dict) -> LatLng:
     """
     TODO: Document. Raises exception.
     """
     # If invalid input, raise error.
-    if not d:
+    if not resp_dict:
         raise ValueError("Invalid empty input dict")
 
     # Get top-level result from results list.
-    results = d["results"]
+    results = resp_dict["results"]
     if not results:
         raise ValueError("Invalid empty results list")
     result: Dict = results[0]

@@ -3,7 +3,7 @@ Entry-point for this application.
 """
 
 # External modules
-from flask import Flask, jsonify, request
+from flask import Flask, request
 
 # Internal modules
 from app.api import utils as api_utils
@@ -35,11 +35,11 @@ def geocode() -> str:
     # LatLng response.
     try:
         lat_lng = main_controller.geocode(address=address)
-    except RuntimeError as e:
+    except RuntimeError as error:
         # If any errors, then create APIError and respond.
         api_error = api_utils.APIError(
             status=api_utils.HTTP_STATUS_ERR_INTERNAL_SERVER_ERROR,
-            title=str(e),
+            title=str(error),
         )
         return api_utils.jsonify_error_data([api_error])
 

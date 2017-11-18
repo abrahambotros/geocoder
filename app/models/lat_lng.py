@@ -27,6 +27,9 @@ class LatLng(object):
         self.lat = lat
         self.lng = lng
 
+    def __str__(self):
+        return "LatLng: <lat: %0.5f, lng: %0.5f>" % (self.lat, self.lng)
+
     def __eq__(self, other: Any) -> bool:
         """
         Two LatLng (or one LatLng instance and one LatLng-like object) are

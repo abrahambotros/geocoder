@@ -16,4 +16,4 @@ class TestGoogleMaps(unittest.TestCase):
         for address, lat_lng in ADDRESS_TO_LATLNG_DICT.items():
             result = gmaps_controller.geocode(address=address)
             self.assertTrue(result == lat_lng,
-                            "Result not equal to expected LatLng")
+                            "Result (%s) not equal to expected LatLng (%s)" % (result, lat_lng))

@@ -76,14 +76,16 @@ def _parse_geocode_response_dict_to_lat_lng(d: Dict) -> LatLng:
     location: Dict = utils_dictionary.get_nested_value(
         dictionary=result,
         keys=location_key_path,
-        default={},
+        default=None,
     )
+    if not location:
+        raise ValueError("Invalid empty location dict")
 
     # Get latitude and longitude from location subdict.
     lat = location.get("lat", None)
     lng = location.get("lng", None)
     if not lat or not lng:
-        raise ValueError("Unable to parse valid (lat, lng) from results")
+        raise ValueError("Unable to parse valid (lat, lng) from location dict")
 
     # Return corresponding LatLng model instance.
     return LatLng(lat=lat, lng=lng)

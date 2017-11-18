@@ -18,8 +18,27 @@ SERVER = Flask(__name__)
 
 @SERVER.route("/", methods=["GET"])
 def geocode() -> str:
-    """
-    Root geocode response handler.
+    """Root geocode response handler. Expects a GET request with a single URL
+    parameter (with key equal to the value of `_URL_PARAM_ADDRESS`) indicating
+    the address to geocode.
+
+    Returns:
+        If successful, writes back to the client a JSON object of the form:
+        {
+            "data": {
+                "lat": <float>,
+                "lng": <float>,
+            },
+        }
+
+        If any errors in geocoding, writes back to the client a JSON of the
+        form:
+        {
+            "errors": [
+                { "status": <int>, "title": <str> },
+                ...,
+            ],
+        }
     """
     # Parse address from request.
     address = request.args.get(_URL_PARAM_ADDRESS)

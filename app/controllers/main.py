@@ -13,10 +13,27 @@ from app.models.lat_lng import LatLng
 
 
 def geocode(address: str) -> LatLng:
-    """
-    Geocode the given address string to (lat, lng) coordinates.
+    """Geocode the given address string to (lat, lng) coordinates, by making a
+    manual HTTP request to one of the third-party geocoding service APIs
+    supported by this package. Currently, this is either the Google Maps
+    Geocoding API, or the HERE Geocoder API.
 
-    TODO: Document. Note throws exception.
+    If there is an error in any request to/parsing of a third-party geocoding
+    API, then fall back to other APIs, if possible. Currently, this first
+    attempts to geocode via the Google Maps Geocoding API, and falls back to the
+    HERE Geocoder API otherwise. If all APIs are exhausted with no success, then
+    an error is thrown as indicated below.
+
+    Args:
+        address: String representing the address we want to geocode.
+
+    Returns:
+        LatLng containing the latitude and longitude corresponding to the
+            address that was geocoded.
+
+    Raises:
+        RuntimeError: If any errors while geocoding the given address to a valid
+            LatLng instance.
     """
     # If invalid address (empty, not string, empty string, or anything otherwise
     # falsy), then raise exception now.

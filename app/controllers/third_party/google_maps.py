@@ -19,10 +19,25 @@ _URL_PARAM_API_KEY = "key"
 
 
 def geocode(address: str) -> LatLng:
-    """
-    Geocode the given address string to (lat, lng) coordinates, by making a
+    """Geocode the given address string to (lat, lng) coordinates, by making a
     manual HTTP request to the Google Maps Geocoding API.
+
+    Args:
+        address: String representing the address we want to geocode.
+
+    Returns:
+        LatLng containing the latitude and longitude corresponding to the
+            address that was geocoded.
+
+    Raises:
+        RuntimeError: If any errors while geocoding the given address to a valid
+            LatLng instance.
     """
+    # If invalid address (empty, not string, empty string, or anything otherwise
+    # falsy), then raise exception now.
+    if not address or not isinstance(address, str):
+        raise RuntimeError("Invalid/empty address")
+
     # Build URL params dict for request, with address string and Google Maps API
     # key from settings.
     params_dict: Dict[str, str] = {
@@ -46,8 +61,20 @@ def geocode(address: str) -> LatLng:
 
 
 def _parse_geocode_response_dict_to_lat_lng(resp_dict: Dict) -> LatLng:
-    """
-    TODO: Document. Raises exception.
+    """Parse the given response dictionary from the Google Maps Geocoding API to
+    a valid LatLng instance.
+
+    Args:
+        resp_dict: Dictionary of the form given by responses from the Google
+            Maps Geocoding API.
+
+    Returns:
+        LatLng containing the latitude and longitude corresponding to the
+            address that was geocoded.
+
+    Raises:
+        RuntimeError: If any errors while geocoding the given address to a valid
+            LatLng instance.
     """
     # If invalid input, raise error.
     if not resp_dict:

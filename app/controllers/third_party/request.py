@@ -17,6 +17,16 @@ def make_geocode_request(base_url: str, params_dict: Dict[str, str]) -> Dict:
     """
     Given information about a third-party geocoding request to fire off, build
     the request now, send it, and parse the response to JSON before returning.
+
+    Args:
+        base_url: String indicating the base URL of the target third-party API
+            endpoint.
+        params_dict: Dictionary of URL parameters (keys and values) that should
+            be encoded into the URL we will send the request to.
+
+    Returns:
+        Dictionary representing the JSON response from the third-party geocoding
+            API service.
     """
     # URL-encode the URL params dict into a URL-encoded string.
     params_str: str = urlencode(params_dict)

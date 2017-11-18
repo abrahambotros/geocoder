@@ -16,13 +16,13 @@ from app.models.lat_lng import LatLng
 class TestApp(unittest.TestCase):
 
     def setUp(self):
-        self.test_client = app.APP.test_client()
+        self.test_client = app.SERVER.test_client()
 
     def tearDown(self):
         self.test_client = None
 
     def test_flask_app_exists(self):
-        self.assertTrue(app.APP)
+        self.assertTrue(app.SERVER)
 
     def test_get_test_client(self):
         self.assertTrue(self.test_client)

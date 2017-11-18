@@ -9,25 +9,29 @@ from flask import Flask, jsonify
 from app.controllers import main as main_controller
 
 
-# Instantiate the Flask app, once and for all.
-APP = Flask(__name__)
+# Instantiate the Flask app server, once and for all.
+SERVER = Flask(__name__)
 
 
-@APP.route("/", methods=["GET"])
+@SERVER.route("/", methods=["GET"])
 def geocode() -> str:
     """
     Root geocode response handler.
 
-    TODO: Adjust return type.
+    TODO: Parse address from request.
+    TODO: Handle errors.
     """
     # Parse address from request.
     # TODO: Implement.
 
     # Pass address from request to main geocoding controller to get geocoded
     # LatLng response.
-    lat_lng = main_controller.geocode(
-        address="",
-    )
+    try:
+        lat_lng = main_controller.geocode(
+            address="",
+        )
+    except Exception:
+        return jsonify({})
 
     # TODO: Handle errors from geocoding functions.
 

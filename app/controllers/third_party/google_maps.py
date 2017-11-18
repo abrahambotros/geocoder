@@ -25,9 +25,6 @@ def geocode(address: str) -> LatLng:
     """
     Geocode the given address string to (lat, lng) coordinates, by making a
     manual HTTP request to the Google Maps Geocoding API.
-
-    TODO: Implement.
-    TODO: Handle errors.
     """
     # Build URL params dict for request, with address string and Google Maps API
     # key from settings.

@@ -4,7 +4,8 @@ API utils.
 
 # External imports
 import json
-from typing import Any, List
+from flask import jsonify
+from typing import Any, Dict, List
 
 # Internal imports
 # - N/A
@@ -48,8 +49,11 @@ class APIError(object):
         self.status = status
         self.title = title
 
-    def to_json(self) -> str:
-        return json.dumps(self, default=lambda o: o.__dict__)
+    def to_dict(self) -> Dict:
+        return {
+            "status": self.status,
+            "title": self.title,
+        }
 
 
 def jsonify_error_data(errors: List[APIError]) -> str:
@@ -60,5 +64,5 @@ def jsonify_error_data(errors: List[APIError]) -> str:
     NOTE: See notes and TODOs regarding Flask.jsonify in jsonify_success_data.
     """
     return json.dumps({
-        "errors": [api_error.to_json() for api_error in errors],
+        "errors": [api_error.to_dict() for api_error in errors],
     })

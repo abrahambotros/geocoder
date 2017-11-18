@@ -125,3 +125,29 @@ source .venv/bin/activate
 
 On most systems, you should now see `(.venv)` prepended to your command
 prompt. Proceed as you wish now!
+
+## Design and implementation principles
+
+* Verbosity and strict data structures are favored over simplicity and data
+    assumptions. As an example, a simple but structured `LatLng` class is used
+    to pass around latitude-longitude information, instead of either a bare
+    2-tuple of `(lat, lng)` or an unstructured dict (even if it has the same
+    `lat` and `lng` keys and values). This type of design choice is made
+    throughout the repo.
+* According to the constraints and nature of the context for this project,
+    third-party libraries are used for receiving input requests and responding
+    to them, but NOT for making the outgoing requests to the actual external
+    geocoding APIs (this is implemented purely using the Python Standard
+    Library, using included packages such as `urlparse` and `json`).
+* Test-driven development was/is heavily used in this project.
+* Where applicable, before implementing core business logic, tests and skeleton
+    outlines (via thorough comments) are written to outline both the expected
+    behavior AND the actual implementation of the core logic. This can be seen
+    in the commit/PR history; in particular, you'll see that there are several
+    test-focused and "skeleton"-focused PRs (which, again, provide skeleton
+    outlines via comments without any code), only then followed by
+    "implementation" PRs. This is a useful approach for delineating the flow,
+    requirements, and behavior of the project and its features, and is
+    especially useful for avoiding sinking time into coding only to find that
+    changes and rewrites are needed due to unforeseen circumstances (that would
+    have been caught by more careful planning).

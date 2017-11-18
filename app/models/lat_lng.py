@@ -10,7 +10,7 @@ from typing import Any, Dict
 from app.utils import math as utils_math
 
 # Constants
-EQUALISH_NDIGITS_PRECISION = 5
+EQUALISH_NDIGITS_PRECISION = 2
 
 
 class LatLng(object):

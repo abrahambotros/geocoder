@@ -134,6 +134,8 @@ prompt. Proceed as you wish now!
     2-tuple of `(lat, lng)` or an unstructured dict (even if it has the same
     `lat` and `lng` keys and values). This type of design choice is made
     throughout the repo.
+    * On a related note, Python 3 type hints are used throughout the codebase,
+    and [mypy](http://mypy-lang.org/) is used for type checking.
 * According to the constraints and nature of the context for this project,
     third-party libraries are used for receiving input requests and responding
     to them, but NOT for making the outgoing requests to the actual external

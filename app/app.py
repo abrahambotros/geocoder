@@ -39,4 +39,4 @@ def geocode() -> str:
         return api_utils.jsonify_error_data([api_error])
 
     # JSON-ify the LatLng data and respond to client.
-    return jsonify(lat_lng.to_dict())
+    return api_utils.jsonify_success_data(lat_lng.to_dict())

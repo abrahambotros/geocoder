@@ -51,3 +51,11 @@ To run tests, just simply run the included tests script from the root directory 
 ```
 ./tests.sh
 ```
+
+## Type-checking
+
+To run type-checks, run the included script from the root directory of this project:
+
+```
+./type_check.sh
+```

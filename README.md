@@ -2,6 +2,56 @@
 
 Simple REST API server for geocoding addresses, implemented in Python.
 
+### Inputs
+
+This simple server accepts HTTP `GET` requests to its root route (`/`), with an
+`address` URL parameter indicating the address string that should be geocoded.
+Thus, if you wanted to get the geocoded data for some location in San Francisco,
+CA, you might make the following request to this server:
+
+```
+<app URL>/?address=123+Somewhere+St,+San+Francisco,+CA>
+```
+
+### Geocoding
+
+The actual geocoding is done via requests to third-party geocoding APIs. In
+particular, this app first tries querying the
+[Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start),
+followed by the [HERE Geocoder API](https://developer.here.com/documentation/geocoder/topics/quick-start.html).
+You must provide your access keys to these APIs as described below in a `.env`
+file (we did not include our own keys here to avoid them getting abused!).
+
+### Outputs
+
+If the geocoding is successful, this server will write back to the client a
+simple JSON object of the form:
+
+```
+{
+    "data": {
+        "lat": <float value indicating the latitude of the input address>,
+        "lng": <float value indicating the latitude of the input address>,
+    },
+}
+```
+
+If there were otherwise any errors in the geocoding process, this server will
+instead write back to the client a JSON object of the form (where `errors` is a
+list):
+
+```
+{
+    "errors": [
+        {
+            "status": <integer HTTP error code, following standard conventions>,
+            "title": <string providing a summary of the error>
+        },
+        ...,
+    ],
+}
+```
+
 ## Setup
 
 1. This project requires Project 3.6+ (3.6.3 recommended). See the
@@ -28,7 +78,6 @@ Simple REST API server for geocoding addresses, implemented in Python.
     HERE_APP_ID="<Your HERE app ID>"
     HERE_APP_CODE="<Your HERE app code>"
     ```
-
 
 ## Run
 

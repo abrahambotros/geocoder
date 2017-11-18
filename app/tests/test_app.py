@@ -37,6 +37,10 @@ class TestApp(unittest.TestCase):
                 "address": address,
             }))
             resp_data = json.loads(resp.data)
+            # Extract out success data under "data" key for comparison below.
+            self.assertTrue("data" in resp_data,
+                            "Expect data field in response")
+            resp_data = resp_data["data"]
 
             # Check response; lat and lng responses must be equal-ish.
             expected_dict = {

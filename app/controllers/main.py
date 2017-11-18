@@ -18,6 +18,11 @@ def geocode(address: str) -> LatLng:
 
     TODO: Document. Note throws exception.
     """
+    # If invalid address (empty, not string, empty string, or anything otherwise
+    # falsy), then raise exception now.
+    if not address or not isinstance(address, str):
+        raise RuntimeError("Invalid/empty address")
+
     # Make geocode requests, with ordered list of geocode functions to try
     # (along with a short description indicating the geocoding service being
     # used for logging).

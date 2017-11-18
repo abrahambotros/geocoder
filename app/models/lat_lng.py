@@ -39,7 +39,10 @@ class LatLng(object):
         considered equal if their lat and lng values are respectively equal up
         to some reasonable amount of precision.
         """
-        return utils_math.equalish(x=self.lat, y=other.lat, precision_digits=EQUALISH_NDIGITS_PRECISION) and \
+        return utils_math.equalish(
+            x=self.lat,
+            y=other.lat,
+            precision_digits=EQUALISH_NDIGITS_PRECISION) and \
             utils_math.equalish(x=self.lng, y=other.lng,
                                 precision_digits=EQUALISH_NDIGITS_PRECISION)
 

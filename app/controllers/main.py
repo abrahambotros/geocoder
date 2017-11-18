@@ -31,9 +31,8 @@ def geocode(address: str) -> LatLng:
     # the primary fails, etc. Assumes geocode functions all have the same form
     # of `geocode(address=<str>)`, and raise a RuntimeError on any errors.
     for geocode_fn, service_description in [
-        (gmaps_controller.geocode, "Google Maps Geocoding API"),
-        (here_controller.geocode, "HERE Geocoder API"),
-    ]:
+            (gmaps_controller.geocode, "Google Maps Geocoding API"),
+            (here_controller.geocode, "HERE Geocoder API")]:
         try:
             return geocode_fn(address=address)
         except RuntimeError:

@@ -40,9 +40,8 @@ class TestLatLng(unittest.TestCase):
         lat = 1.1
         lng = 2.2
 
-        self.assertFalse(LatLng(lat=lat, lng=lng) == LatLng(
-            lat=lng, lng=lat),
-            "Swapped lat/lng values should lead to inequality")
+        self.assertFalse(LatLng(lat=lat, lng=lng) == LatLng(lat=lng, lng=lat),
+                         "Swapped lat/lng values should lead to inequality")
         self.assertFalse(LatLng(lat=lat, lng=lng) ==
                          LatLng(lat=lat, lng=lng * 2),
                          "lng not equal, so instances should be not equal")

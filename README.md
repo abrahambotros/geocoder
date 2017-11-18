@@ -1,6 +1,6 @@
 # Geocoder
 
-Simple REST API for geocoding addresses, implemented in Python.
+Simple REST API server for geocoding addresses, implemented in Python.
 
 ## Setup
 

@@ -51,6 +51,14 @@ class LatLng(object):
         Custom method for generating a Dict corresponding to a LatLng instance
         and its implicit properties.
 
+        Returns:
+            Dictionary form of this instance. This is of the form (see
+            API_FIELD_* for any changes/deviations from this):
+            {
+                "lat": <self.lat>,
+                "lng": <self.lng>,
+            }
+
         NOTE: We could also just do __dict__(), but choose this manual
             implementation in interests of clarity, control, and verbosity. This
             also would allow us to handle any property renaming when converting
@@ -65,6 +73,10 @@ class LatLng(object):
         """
         Custom method for generating a JSON string corresponding to a LatLng
         instance and its implicit properties. Wraps to_dict.
+
+        Returns:
+            String indicating the JSON string representation of this instance.
+            Corresponds to a dict of the form given by `to_dict`.
 
         NOTE: We could have also gone the JSONEncoder-subclassing route, but
             choose to manually implement this by wrapping toDict instead in the

@@ -32,7 +32,6 @@ class TestApp(unittest.TestCase):
         for address, lat_lng in ADDRESS_TO_LATLNG_DICT.items():
             # Make request containing this address as URL param. Send to root
             # route on this Flask server app instance via test client.
-            # TODO: Move "address" out to constant str.
             resp = self.test_client.get("/?%s" % urlencode({
                 "address": address,
             }))

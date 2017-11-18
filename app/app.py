@@ -35,7 +35,7 @@ def geocode() -> str:
     # LatLng response.
     try:
         lat_lng = main_controller.geocode(address=address)
-    except Exception as e:
+    except RuntimeError as e:
         # If any errors, then create APIError and respond.
         api_error = api_utils.APIError(
             status=api_utils.HTTP_STATUS_ERR_INTERNAL_SERVER_ERROR,

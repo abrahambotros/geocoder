@@ -4,7 +4,9 @@ API.
 """
 
 # External imports
+from json import JSONDecodeError
 from typing import Dict
+from urllib.error import URLError
 
 # Internal imports
 from app.models.lat_lng import LatLng
@@ -47,10 +49,17 @@ def geocode(address: str) -> LatLng:
 
     # Make geocode request to Google Maps Geocoding API. Get result as JSON
     # dict.
-    resp_dict = make_geocode_request(
-        base_url=_URL_GEOCODE_BASE,
-        params_dict=params_dict,
-    )
+    try:
+        resp_dict = make_geocode_request(
+            base_url=_URL_GEOCODE_BASE,
+            params_dict=params_dict,
+        )
+    except URLError:
+        raise RuntimeError("Error making request to Google Maps Geocoding API")
+    except JSONDecodeError:
+        raise RuntimeError(
+            "Error parsing JSON response from Google Maps Geocoding API",
+        )
 
     # Parse response data dict's latitude and longitude into LatLng instance and
     # return with success. If error, raise exception.

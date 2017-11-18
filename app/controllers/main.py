@@ -5,10 +5,10 @@ third-party geocoding service requests and backup/fallback logic.
 """
 
 # External imports
-# - N/A
+import logging
 
 # Internal imports
-from app.controllers.third_party import google_maps as gmaps_controller
+from app.controllers.third_party import google_maps as gmaps_controller, here as here_controller
 from app.models.lat_lng import LatLng
 
 
@@ -16,10 +16,28 @@ def geocode(address: str) -> LatLng:
     """
     Geocode the given address string to (lat, lng) coordinates.
 
-    TODO: Implement fallback.
     TODO: Document. Note throws exception.
     """
-    try:
-        return gmaps_controller.geocode(address=address)
-    except Exception:
-        raise RuntimeError("Error geocoding address: %s" % address)
+    # Make geocode requests, with ordered list of geocode functions to try
+    # (along with a short description indicating the geocoding service being
+    # used for logging).
+    #
+    # The first is the primary request function, the second is the fallback if
+    # the primary fails, etc. Assumes geocode functions all have the same form
+    # of `geocode(address=<str>)`, and raise a RuntimeError on any errors.
+    for geocode_fn, service_description in [
+        (gmaps_controller.geocode, "Google Maps Geocoding API"),
+        (here_controller.geocode, "HERE Geocoder API"),
+    ]:
+        try:
+            return geocode_fn(address=address)
+        except RuntimeError:
+            logging.warning(
+                "Error geocoding via %s; " +
+                "falling back to next available service",
+                service_description,
+            )
+
+    # If reach here, then all geocoding requests have failed, and we should
+    # instead raise an exception.
+    raise RuntimeError("All geocoding requests failed")

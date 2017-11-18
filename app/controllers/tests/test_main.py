@@ -20,10 +20,5 @@ class TestMain(unittest.TestCase):
 
     def test_geocode_errors(self):
         for invalid_address in ["", None, 10]:
-            try:
+            with self.assertRaises(RuntimeError):
                 main_controller.geocode(address=invalid_address)
-                raise Exception(
-                    "Should not reach here; should raise RuntimeError for " +
-                    "empty/invalid addresses")
-            except RuntimeError:
-                pass

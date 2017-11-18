@@ -81,8 +81,8 @@ list):
 
 ## Run
 
-After the setup above, all you need to do to start the app server is run the included script from
-the root directory of this project!
+After the setup above, all you need to do to start the app server is run the
+included script from the root directory of this project!
 
 ```
 ./run.sh
@@ -90,7 +90,8 @@ the root directory of this project!
 
 ## Tests
 
-To run tests, just simply run the included tests script from the root directory of this project:
+To run tests, just simply run the included tests script from the root directory
+of this project:
 
 ```
 ./tests.sh
@@ -98,7 +99,8 @@ To run tests, just simply run the included tests script from the root directory 
 
 ## Type-checking
 
-To run type-checks, run the included script from the root directory of this project:
+To run type-checks, run the included script from the root directory of this
+project:
 
 ```
 ./type_check.sh

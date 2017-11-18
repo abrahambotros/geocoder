@@ -7,7 +7,7 @@ import json
 import ssl
 import urllib.request
 from urllib.parse import urlencode
-from typing import Dict, List
+from typing import Dict, List, Union
 
 # Internal imports
 from app.conf.settings import HERE_APP_ID, HERE_APP_CODE
@@ -68,13 +68,38 @@ def _parse_geocode_response_dict_to_lat_lng(d: Dict) -> LatLng:
         raise ValueError("Invalid empty input dict")
 
     # Get Response->View sublist.
+    view: Union[List, None] = utils_dictionary.get_nested_value(
+        dictionary=d,
+        keys=["Response", "View"],
+        default=None,
+    )
+    if not view:
+        raise ValueError("Invalid empty view list")
     # Get first element in View list.
+    top_view: Dict = view[0]
 
     # Get Response->View->Result sublist.
+    result: Union[List, None] = top_view.get("Result", None)
+    if not result:
+        raise ValueError("Invalid empty result list")
     # Get first element in Result list.
+    top_result = result[0]
 
     # Get Response->View->Result->Location->DisplayPosition subdict.
+    display_position = utils_dictionary.get_nested_value(
+        dictionary=top_result,
+        keys=["Location", "DisplayPosition"],
+        default=None
+    )
+    if not display_position:
+        raise ValueError("Invalid empty DisplayPosition dict")
 
     # Get latitude and longitude from DisplayPosition subdict.
+    lat = display_position.get("Latitude", None)
+    lng = display_position.get("Longitude", None)
+    if not lat or not lng:
+        raise ValueError(
+            "Unable to parse valid (lat, lng) from DisplayPosition dict")
 
     # Return corresponding LatLng model instance.
+    return LatLng(lat=lat, lng=lng)

@@ -14,4 +14,4 @@ def equalish(x: Union[int, float], y: Union[int, float], precision_digits: int =
     Given two numeric values, determine if they are "equalish" - meaning they
     are equal up to some given numeric precision (given by precision_digits).
     """
-    return False
+    return round(x - y, ndigits=precision_digits) == 0

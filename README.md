@@ -13,18 +13,13 @@ Simple REST API server for geocoding addresses, implemented in Python.
     [sudo] pip3 install virtualenv
     ```
 
-3. From the root directory of this project, enter this project's `virtualenv`:
+3. Install project dependencies by running the following command from the root
+    directory of this project:
     ```
-    source .venv/bin/activate
+    ./install_dependencies.sh
     ```
-    On most systems, you should now see `(.venv)` prepended to your command
-    prompt.
 
-4. From the root directory of this project, install this project's dependencies:
-    ```
-    pip3 install -r requirements.txt
-    ```
-5. Set API keys for the third-party geocoding APIs that are used by this library
+4. Set API keys for the third-party geocoding APIs that are used by this library
     (currently, Google Maps Geocoding API and here Geocoder API). To do so,
     create a new `.env` file in the root directory of this project, and define
     it as follows, inserting your own API keys:
@@ -59,3 +54,17 @@ To run type-checks, run the included script from the root directory of this proj
 ```
 ./type_check.sh
 ```
+
+## virtualenv
+
+As a note, if you'd like to contribute or debug this project any further, you'll
+need to drop into the appropriate `virtualenv` manually before changing/updating
+requirements, running code manually (outside of the supplied scripts), etc. To
+do so, from the root directory of this project, run:
+
+```
+source .venv/bin/activate
+```
+
+On most systems, you should now see `(.venv)` prepended to your command
+prompt. Proceed as you wish now!

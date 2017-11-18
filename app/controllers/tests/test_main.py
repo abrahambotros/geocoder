@@ -17,3 +17,13 @@ class TestMain(unittest.TestCase):
             result = main_controller.geocode(address=address)
             self.assertTrue(result == lat_lng,
                             "Result not equal to expected LatLng")
+
+    def test_geocode_errors(self):
+        for invalid_address in ["", None, 10]:
+            try:
+                main_controller.geocode(address=invalid_address)
+                raise Exception(
+                    "Should not reach here; should raise RuntimeError for " +
+                    "empty/invalid addresses")
+            except RuntimeError:
+                pass

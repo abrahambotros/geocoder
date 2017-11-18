@@ -24,10 +24,11 @@ class TestUtilsDictionary(unittest.TestCase):
         }
         self.assertEqual(
             utils_dictionary.get_nested_value(
-                d=d, keys=["one", "two", 3, "four"]),
+                dictionary=d, keys=["one", "two", 3, "four"]),
             4,
         )
         self.assertEqual(
-            utils_dictionary.get_nested_value(d=d, keys=["one", "five"]),
+            utils_dictionary.get_nested_value(
+                dictionary=d, keys=["one", "five"]),
             5,
         )

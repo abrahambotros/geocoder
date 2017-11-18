@@ -55,7 +55,7 @@ def geocode(address: str) -> LatLng:
         except RuntimeError:
             logging.warning(
                 "Error geocoding via %s; " +
-                "falling back to next available service",
+                "falling back to next available service, if any",
                 service_description,
             )
 

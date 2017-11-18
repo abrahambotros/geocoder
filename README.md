@@ -20,7 +20,7 @@ Simple REST API server for geocoding addresses, implemented in Python.
     ```
 
 4. Set API keys for the third-party geocoding APIs that are used by this library
-    (currently, Google Maps Geocoding API and here Geocoder API). To do so,
+    (currently, Google Maps Geocoding API and HERE Geocoder API). To do so,
     create a new `.env` file in the root directory of this project, and define
     it as follows, inserting your own API keys:
     ```

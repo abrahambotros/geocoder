@@ -3,9 +3,8 @@ API utils.
 """
 
 # External imports
-import json
-from flask import jsonify
 from typing import Any, Dict, List
+from flask import jsonify
 
 # Internal imports
 # - N/A
@@ -30,14 +29,8 @@ def jsonify_success_data(data: Any) -> str:
     structure for all request responses. In particular, since this is a
     success response, all we need to do is include the data value under the
     "data" key in a dict, and JSONify that dict to a string.
-
-    NOTE: We could also use Flask.jsonify, but choose to instead avoid using a
-        3rd-party library for JSON handling where possible given the nature of
-        the initial creation of this library.
-
-    TODO: Use Flask.jsonify in the future.
     """
-    return json.dumps({"data": data})
+    return jsonify({"data": data})
 
 
 ###################
@@ -60,9 +53,7 @@ def jsonify_error_data(errors: List[APIError]) -> str:
     """
     Given a list of APIError instances, place them under the "errors" key in a
     dict, and JSONify the dict to an output string.
-
-    NOTE: See notes and TODOs regarding Flask.jsonify in jsonify_success_data.
     """
-    return json.dumps({
+    return jsonify({
         "errors": [api_error.to_dict() for api_error in errors],
     })

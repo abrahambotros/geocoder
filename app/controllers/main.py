@@ -40,4 +40,4 @@ def geocode(address: str) -> LatLng:
 
     # If reach here, then all geocoding requests have failed, and we should
     # instead raise an exception.
-    raise RuntimeError("All geocoding requests failed")
+    raise RuntimeError("Unable to geocode requested address")
